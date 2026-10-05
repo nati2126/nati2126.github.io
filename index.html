@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nathnael Dejene — Software Engineer</title>
+  <meta name="description" content="Nathnael Dejene is a software engineer in Addis Ababa working on backend services and computer vision in Python and C++. Currently at the Ethiopian Artificial Intelligence Institute.">
+  <meta name="author" content="Nathnael Dejene">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F3F1EC" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1012" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://nati2126.github.io/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nati2126.github.io/">
+  <meta property="og:image" content="https://nati2126.github.io/assets/nathnael.jpg">
+  <meta property="og:title" content="Nathnael Dejene — Software Engineer">
+  <meta property="og:description" content="Backend services and computer vision in Python and C++. Currently at the Ethiopian Artificial Intelligence Institute.">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ─── Header ─────────────────────────────────────────── -->
+  <header class="nav" id="top">
+    <div class="nav__inner wrap">
+      <a class="brand" href="#top" aria-label="Nathnael Dejene, back to top">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Nathnael Dejene</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Sections">
+        <a href="#experience"><span>02</span>Experience</a>
+        <a href="#projects"><span>03</span>Projects</a>
+        <a href="#toolkit"><span>04</span>Toolkit</a>
+        <a href="#education"><span>05</span>Education</a>
+        <a href="#contact"><span>06</span>Contact</a>
+      </nav>
+
+      <div class="nav__meta">
+        <span class="clock mono" aria-label="Local time in Addis Ababa">
+          ADD <time id="clock">--:--</time>
+        </span>
+        <button class="theme-toggle mono" type="button" aria-label="Toggle colour theme">
+          <span class="theme-toggle__dot" aria-hidden="true"></span><span class="theme-toggle__label">Theme</span>
+        </button>
+        <button class="menu-toggle mono" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav class="wrap" aria-label="Sections">
+        <a href="#profile"><span>01</span>Profile</a>
+        <a href="#experience"><span>02</span>Experience</a>
+        <a href="#projects"><span>03</span>Projects</a>
+        <a href="#toolkit"><span>04</span>Toolkit</a>
+        <a href="#education"><span>05</span>Education</a>
+        <a href="#contact"><span>06</span>Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ─── Hero ─────────────────────────────────────────── -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero__text">
+        <p class="kicker mono">Software Engineer <span class="sep">/</span> Backend <span class="sep">·</span> Computer Vision</p>
+        <h1 id="hero-title" class="hero__title">Nathnael<br>Dejene</h1>
+        <p class="hero__lede">
+          I write Python and C++ for backend services and computer vision systems,
+          and I care most about the parts that decide whether software survives
+          production: correctness, debugging and clear documentation.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="#projects">Selected work <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="assets/Nathnael_Dejene_CV.pdf" download>Download CV <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <figure class="stage" aria-label="Interactive 3D point cloud with a live object-detection overlay">
+        <canvas id="scene" aria-hidden="true"></canvas>
+
+        <div class="stage__hud" aria-hidden="true">
+          <div class="det" id="det">
+            <span class="det__label mono"><span id="det-class">—</span> <b id="det-score">0.00</b></span>
+          </div>
+          <div class="hud hud--tl mono">
+            <span>CAM_01</span>
+            <span>pointcloud / surface-sampled</span>
+          </div>
+          <div class="hud hud--tr mono"><span id="hud-id">obj 01/04</span></div>
+          <div class="hud hud--bl mono">
+            <span><span id="hud-fps">--</span> fps</span>
+            <span><span id="hud-pts">0</span> pts</span>
+            <span>frame <span id="hud-frame">0</span></span>
+          </div>
+          <div class="hud hud--br mono">drag to rotate · click to switch</div>
+          <span class="tick tick--t"></span><span class="tick tick--r"></span>
+          <span class="tick tick--b"></span><span class="tick tick--l"></span>
+        </div>
+
+        <figcaption class="stage__fallback mono">3D preview unavailable in this browser.</figcaption>
+      </figure>
+
+      <dl class="hero__facts">
+        <div><dt class="mono">Based in</dt><dd>Addis Ababa, Ethiopia</dd></div>
+        <div><dt class="mono">Now</dt><dd>Computer Vision Engineer, EAII</dd></div>
+        <div><dt class="mono">Education</dt><dd>M.Sc. Computer Engineering, AASTU</dd></div>
+        <div><dt class="mono">Primary</dt><dd>Python · C++</dd></div>
+      </dl>
+    </section>
+
+    <!-- ─── 01 Profile ───────────────────────────────────── -->
+    <section class="section wrap" id="profile" aria-labelledby="profile-h">
+      <header class="section__head" data-reveal>
+        <span class="section__num mono">01</span>
+        <h2 class="section__title" id="profile-h">Profile</h2>
+      </header>
+
+      <div class="section__body profile">
+        <div class="prose" data-reveal>
+          <p class="lead">
+            I'm a software engineer at the Ethiopian Artificial Intelligence Institute,
+            where I build and optimize computer vision systems and the FastAPI services
+            that put them into use.
+          </p>
+          <p>
+            Most of the job is taking something that works in a research notebook and
+            making it fast, tested and documented well enough for a team to deploy and
+            maintain. That means reading model outputs closely, finding the cases where
+            they fail, and fixing the reason rather than the symptom.
+          </p>
+          <p>
+            I trained as an electrical and computer engineer and recently finished an
+            M.Sc. in Computer Engineering. My grounding is in algorithms, data structures and
+            distributed systems, and I'm happiest on work where correctness matters and
+            the reasoning has to be explained clearly in writing.
+          </p>
+        </div>
+
+        <figure class="portrait" id="portrait" data-reveal>
+          <div class="portrait__frame">
+            <img src="assets/nathnael.jpg" alt="Portrait of Nathnael Dejene" width="600" height="600" loading="lazy" decoding="async">
+            <canvas class="portrait__pixels" width="600" height="600" aria-hidden="true"></canvas>
+            <svg class="portrait__overlay" viewBox="0 0 600 600" aria-hidden="true">
+              <g class="pf-box">
+                <path pathLength="1" d="M178 172 V132 H218" /><path pathLength="1" d="M388 132 H428 V172" />
+                <path pathLength="1" d="M428 418 V458 H388" /><path pathLength="1" d="M218 458 H178 V418" />
+                <rect x="178" y="132" width="250" height="326" />
+              </g>
+              <g class="pf-mesh">
+                <line pathLength="1" x1="245" y1="242" x2="352" y2="242" />
+                <line pathLength="1" x1="245" y1="242" x2="298" y2="292" /><line pathLength="1" x1="352" y1="242" x2="298" y2="292" />
+                <line pathLength="1" x1="245" y1="242" x2="257" y2="349" /><line pathLength="1" x1="352" y1="242" x2="339" y2="349" />
+                <line pathLength="1" x1="257" y1="349" x2="339" y2="349" />
+              </g>
+              <g class="pf-points">
+                <circle cx="245" cy="242" r="6" style="--i:0" /><circle cx="352" cy="242" r="6" style="--i:1" />
+                <circle cx="298" cy="292" r="6" style="--i:2" />
+                <circle cx="257" cy="349" r="6" style="--i:3" /><circle cx="339" cy="349" r="6" style="--i:4" />
+              </g>
+              <line class="pf-scan" x1="0" y1="0" x2="600" y2="0" />
+            </svg>
+            <span class="portrait__tag mono" aria-hidden="true">face <b>0.98</b></span>
+          </div>
+          <figcaption class="portrait__cap mono">
+            <span>input_001.jpg · 600×600</span>
+            <button class="portrait__toggle" type="button" aria-pressed="true">overlay on</button>
+          </figcaption>
+        </figure>
+
+        <aside class="focus" data-reveal aria-label="Areas of focus">
+          <p class="label mono">Areas of focus</p>
+          <ol>
+            <li><span class="mono">a</span>Backend services &amp; REST APIs</li>
+            <li><span class="mono">b</span>Computer vision in production</li>
+            <li><span class="mono">c</span>Model evaluation &amp; debugging</li>
+            <li><span class="mono">d</span>Inference optimization</li>
+            <li><span class="mono">e</span>Network security</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ─── 02 Experience ────────────────────────────────── -->
+    <section class="section wrap" id="experience" aria-labelledby="exp-h">
+      <header class="section__head" data-reveal>
+        <span class="section__num mono">02</span>
+        <h2 class="section__title" id="exp-h">Experience</h2>
+      </header>
+
+      <div class="section__body">
+        <article class="role" data-reveal>
+          <div class="role__when mono">
+            <span>Jul 2025 — Present</span>
+            <span class="status"><i aria-hidden="true"></i>Current</span>
+          </div>
+          <div class="role__main">
+            <h3 class="role__title">Computer Vision Engineer</h3>
+            <p class="role__org">Ethiopian Artificial Intelligence Institute (EAII) · Addis Ababa</p>
+            <ul class="role__list">
+              <li>Develop and optimize high-performance computer vision systems in Python, shipping production code to real-world deployments.</li>
+              <li>Evaluate and debug model outputs for accuracy and correctness, isolating failure cases and improving reliability.</li>
+              <li>Build FastAPI backend services for large-scale data processing and model deployment.</li>
+              <li>Move research prototypes into production with cross-functional teams, documenting designs and technical decisions along the way.</li>
+            </ul>
+            <ul class="tags" aria-label="Stack">
+              <li>Python</li><li>PyTorch</li><li>FastAPI</li><li>Docker</li><li>Linux</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role" data-reveal>
+          <div class="role__when mono">
+            <span>Jul 2024 — Sep 2024</span>
+          </div>
+          <div class="role__main">
+            <h3 class="role__title">Engineering Intern</h3>
+            <p class="role__org">Gibe III Hydroelectric Power Station</p>
+            <ul class="role__list">
+              <li>Supported maintenance and optimization of control systems for power-generation equipment, with hands-on exposure to industrial automation and real-time monitoring.</li>
+            </ul>
+            <ul class="tags" aria-label="Areas">
+              <li>Control systems</li><li>Industrial automation</li><li>Real-time monitoring</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ─── 03 Projects ──────────────────────────────────── -->
+    <section class="section wrap" id="projects" aria-labelledby="proj-h">
+      <header class="section__head" data-reveal>
+        <span class="section__num mono">03</span>
+        <h2 class="section__title" id="proj-h">Selected projects</h2>
+      </header>
+
+      <div class="section__body">
+
+        <!-- MiniTor -->
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <p class="project__idx mono">03.1 — Networking / Security</p>
+            <h3 class="project__title">MiniTor</h3>
+            <p class="project__sub">A custom onion-routing protocol for anonymous communication, in Python.</p>
+          </div>
+
+          <div class="figure route-fig" aria-label="Diagram: a message wrapped in three encryption layers travels from client through entry, middle and exit relays; each relay removes one layer.">
+            <div class="figure__bar mono">
+              <span>fig. 1 — one message, three layers, three hops</span>
+              <span class="figure__state" id="route-state" aria-live="off">building circuit</span>
+            </div>
+            <div class="route" id="route">
+              <div class="route__dir mono">
+                <span class="node node--dir">Directory server</span>
+                <span class="route__dir-note">relays register · client discovers</span>
+              </div>
+              <ol class="route__path">
+                <li class="stop" data-stop="0"><span class="node">Client</span><span class="stop__note mono">wraps 3 layers</span></li>
+                <li class="stop" data-stop="1"><span class="node">Entry</span><span class="stop__note mono">peels layer 1</span></li>
+                <li class="stop" data-stop="2"><span class="node">Middle</span><span class="stop__note mono">peels layer 2</span></li>
+                <li class="stop" data-stop="3"><span class="node">Exit</span><span class="stop__note mono">peels layer 3</span></li>
+                <li class="stop" data-stop="4"><span class="node node--ghost">Destination</span><span class="stop__note mono">plaintext</span></li>
+              </ol>
+              <div class="packet" id="packet" aria-hidden="true">
+                <span class="layer layer--3"></span>
+                <span class="layer layer--2"></span>
+                <span class="layer layer--1"></span>
+                <span class="core"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project__cols">
+            <ul class="project__list">
+              <li>Designed and implemented an onion-routing protocol that lets clients communicate anonymously across a network of relay nodes.</li>
+              <li>Built hybrid encryption: RSA for key exchange, AES for data transfer. Each relay can only remove its own layer and only knows the previous and next hop.</li>
+              <li>Wrote a decentralized directory server for relay registration and client discovery.</li>
+            </ul>
+            <div class="project__meta">
+              <ul class="tags"><li>Python</li><li>RSA</li><li>AES</li><li>TCP sockets</li><li>Docker</li></ul>
+              <a class="link mono" href="https://github.com/nati2126/MiniTor" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Vision Inference Microservice -->
+        <article class="project" data-reveal>
+          <div class="project__head">
+            <p class="project__idx mono">03.2 — Backend / Machine Learning</p>
+            <h3 class="project__title">Vision Inference Microservice</h3>
+            <p class="project__sub">An object-detection API: upload an image, get back labelled bounding boxes.</p>
+          </div>
+
+          <div class="figure svc-fig" aria-label="Diagram: a POST request to /api/v1/detect passes down through the endpoint, service and model layers, then returns JSON detections.">
+            <div class="figure__bar mono">
+              <span>fig. 2 — one request through the service</span>
+              <span class="figure__state" id="svc-state">idle</span>
+            </div>
+            <div class="svc" id="svc">
+              <div class="svc__col">
+                <p class="svc__label mono">request</p>
+                <div class="svc__req mono" data-step="req">
+                  <span><b>POST</b> /api/v1/detect</span>
+                  <span class="svc__dim">multipart · image/jpeg</span>
+                </div>
+                <div class="svc__req svc__req--health mono">
+                  <span><b>GET</b> /api/v1/health</span>
+                  <span class="svc__dim">model loaded · version</span>
+                </div>
+              </div>
+
+              <div class="svc__col">
+                <p class="svc__label mono">app/</p>
+                <ol class="svc__layers">
+                  <li data-step="api"><code class="mono">api/v1/endpoints</code><span>thin routes · Pydantic v2</span></li>
+                  <li data-step="service"><code class="mono">services</code><span>orchestration</span></li>
+                  <li data-step="model"><code class="mono">models</code><span>YOLOv8 · cpu / cuda / mps</span></li>
+                  <li data-step="core" class="svc__core"><code class="mono">core</code><span>config · structlog JSON logs</span></li>
+                </ol>
+              </div>
+
+              <div class="svc__col">
+                <p class="svc__label mono">response</p>
+<pre class="svc__res mono" aria-label="Example JSON response"><span class="ln"><i>HTTP/1.1</i> <b>200 OK</b></span>
+<span class="ln">{</span>
+<span class="ln">  "detections": [{</span>
+<span class="ln">    "label": <em>"person"</em>,</span>
+<span class="ln">    "confidence": <em>0.91</em>,</span>
+<span class="ln">    "bbox": [<em>178, 132, 428, 458</em>]</span>
+<span class="ln">  }],</span>
+<span class="ln">  "inference_time_ms": <em>42.15</em></span>
+<span class="ln">}</span></pre>
+              </div>
+            </div>
+            <p class="figure__note mono">Response shape is illustrative. 42.15 ms is the sample timing from the project README.</p>
+          </div>
+
+          <div class="project__cols">
+            <ul class="project__list">
+              <li>Serves YOLOv8 object detection over a versioned FastAPI REST API: <code>POST /api/v1/detect</code> returns labels, confidence scores, bounding boxes and inference timing, and <code>GET /api/v1/health</code> reports model status.</li>
+              <li>Layered architecture with thin route handlers, a service layer for orchestration, an isolated model layer and shared core config, so the model can change without touching the API.</li>
+              <li>Pydantic v2 validation, structured JSON logging with structlog, and environment-based config for model, confidence threshold and compute device (CPU, CUDA or Apple MPS).</li>
+              <li>Multi-stage Docker build, docker-compose and Makefile targets, an async test suite with pytest and httpx, and auto-generated Swagger and ReDoc docs.</li>
+            </ul>
+            <div class="project__meta">
+              <ul class="tags"><li>Python</li><li>FastAPI</li><li>YOLOv8</li><li>PyTorch</li><li>Pydantic</li><li>Docker</li><li>pytest</li></ul>
+              <a class="link mono" href="https://github.com/nati2126/vision-inference-microservice" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ─── 04 Toolkit ───────────────────────────────────── -->
+    <section class="section wrap" id="toolkit" aria-labelledby="tool-h">
+      <header class="section__head" data-reveal>
+        <span class="section__num mono">04</span>
+        <h2 class="section__title" id="tool-h">Toolkit</h2>
+      </header>
+
+      <div class="section__body">
+        <dl class="spec" data-reveal>
+          <div class="spec__row spec__row--primary">
+            <dt class="mono">Primary languages</dt>
+            <dd>Python, C++</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">Also write</dt>
+            <dd>JavaScript, Java, SQL, MATLAB</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">Machine learning</dt>
+            <dd>PyTorch, TensorFlow, deep learning, computer vision, model evaluation, quantization &amp; pruning</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">Backend &amp; tools</dt>
+            <dd>FastAPI, Flask, REST APIs, Docker, Git, Linux</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">Engineering practice</dt>
+            <dd>Code review, debugging, algorithm analysis, data structures, technical writing &amp; documentation</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">Domains</dt>
+            <dd>Backend development, computer vision, AI model evaluation &amp; training data, network security</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ─── 05 Education ─────────────────────────────────── -->
+    <section class="section wrap" id="education" aria-labelledby="edu-h">
+      <header class="section__head" data-reveal>
+        <span class="section__num mono">05</span>
+        <h2 class="section__title" id="edu-h">Education</h2>
+      </header>
+
+      <div class="section__body">
+        <div class="degrees">
+          <article class="degree" data-reveal>
+            <p class="degree__years mono">2024 — 2026</p>
+            <h3 class="degree__title">M.Sc. Computer Engineering</h3>
+            <p class="degree__school">Addis Ababa Science and Technology University</p>
+            <p class="degree__status mono">Completed Aug 2026</p>
+          </article>
+          <article class="degree" data-reveal>
+            <p class="degree__years mono">2020 — 2025</p>
+            <h3 class="degree__title">B.Sc. Electrical &amp; Computer Engineering</h3>
+            <p class="degree__school">Addis Ababa Science and Technology University</p>
+            <p class="degree__status mono">Completed Jun 2025</p>
+          </article>
+        </div>
+        <p class="coursework" data-reveal>
+          <span class="label mono">Relevant coursework</span>
+          Data Structures &amp; Algorithms · Computer Vision · Networks · Distributed Systems · Operating Systems
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── 06 Contact ───────────────────────────────────── -->
+    <section class="section section--contact wrap" id="contact" aria-labelledby="contact-h">
+      <header class="section__head" data-reveal>
+        <span class="section__num mono">06</span>
+        <h2 class="section__title" id="contact-h">Contact</h2>
+      </header>
+
+      <div class="section__body">
+        <p class="contact__intro" data-reveal>
+          Hiring for a software role, or working on something where this background fits?
+          Email is the fastest way to reach me.
+        </p>
+        <div class="contact__mail" data-reveal>
+          <a class="mail" href="mailto:natidejene54@gmail.com">natidejene54@gmail.com</a>
+          <button class="copy mono" type="button" data-copy="natidejene54@gmail.com">Copy</button>
+        </div>
+        <ul class="contact__links" data-reveal>
+          <li><a href="https://github.com/nati2126" target="_blank" rel="noopener"><span class="mono">GitHub</span>nati2126 ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/nathnael-dejene-60502435a/" target="_blank" rel="noopener"><span class="mono">LinkedIn</span>Nathnael Dejene ↗</a></li>
+          <li><a href="assets/Nathnael_Dejene_CV.pdf" download><span class="mono">CV</span>PDF, 1 page ↓</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap mono">
+    <span>© <span id="year">2026</span> Nathnael Dejene</span>
+    <span>Addis Ababa, Ethiopia</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script type="module" src="js/scene.js"></script>
+</body>
+</html>

@@ -6,7 +6,8 @@ WebGL point cloud (Three.js, loaded from jsDelivr) with a live detection overlay
 ```
 index.html
 css/style.css        design tokens, layout, light + dark themes
-js/main.js           theme, clock, nav, reveal, portrait detection, project diagrams
+js/main.js           theme, clock, nav, reveal, portrait, project animations
+js/charts.js         benchmark bars and threshold sweep, built from the HTML tables
 js/scene.js          3D hero scene (ES module)
 assets/              favicon, portrait, CV PDF
 ```

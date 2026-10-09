@@ -106,7 +106,7 @@
 
   /* ─── Reveal on scroll ──────────────────────────────── */
 
-  var revealTargets = document.querySelectorAll('[data-reveal]');
+  var revealTargets = document.querySelectorAll('[data-reveal], #tiers');
   if ('IntersectionObserver' in window && !reducedMotion.matches) {
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -324,6 +324,8 @@
   /* ─── Inference service diagram ─────────────────────── */
   // One request walks down the layers (api → service → model) and back up,
   // the core layer flags each step as logged, then the JSON response prints.
+  // Each pass runs on the next backend; time in the model layer scales with
+  // that backend's benchmarked mean latency.
 
   var svc = document.getElementById('svc');
   if (svc) {
@@ -331,15 +333,17 @@
     var step = function (name) { return svc.querySelector('[data-step="' + name + '"]'); };
     var lines = svc.querySelectorAll('.ln');
     var coreLayer = step('core');
-    var DONE = '200 OK · 42.15 ms';
-    var STEPS = [
-      ['req', 650, 'POST /api/v1/detect'],
-      ['api', 520, 'validate request'],
-      ['service', 520, 'orchestrate'],
-      ['model', 1050, 'YOLOv8 inference'],
-      ['service', 380, 'build response'],
-      ['api', 380, 'serialize']
+    var chips = svc.querySelectorAll('.svc__backends i');
+    var resBackend = document.getElementById('res-backend');
+    var resPrecision = document.getElementById('res-precision');
+    var resMs = document.getElementById('res-ms');
+    var BACKENDS = [
+      { b: 'tensorrt', p: 'fp16', d: 'cuda', ms: '13.84' },
+      { b: 'onnxruntime', p: 'fp32', d: 'cuda', ms: '18.99' },
+      { b: 'openvino', p: 'int8', d: 'cpu', ms: '32.17' },
+      { b: 'pytorch', p: 'fp32', d: 'cpu', ms: '92.61' }
     ];
+    var pass = 0;
     var timers = [];
     var running = false;
 
@@ -347,15 +351,31 @@
     var clearLit = function () {
       svc.querySelectorAll('.is-lit').forEach(function (el) { el.classList.remove('is-lit'); });
     };
+    var setBackend = function (be) {
+      chips.forEach(function (c) { c.classList.toggle('is-on', c.getAttribute('data-b') === be.b); });
+      resBackend.textContent = '"' + be.b + '"';
+      resPrecision.textContent = '"' + be.p + '"';
+      resMs.textContent = be.ms;
+    };
 
     var run = function () {
       timers = [];
+      var be = BACKENDS[pass++ % BACKENDS.length];
+      var steps = [
+        ['req', 650, 'POST /api/v1/detect'],
+        ['api', 480, 'validate request'],
+        ['service', 480, 'orchestrate'],
+        ['model', 260 + parseFloat(be.ms) * 10, 'YOLOv8 · ' + be.b + ' ' + be.p + ' (' + be.d + ')'],
+        ['service', 360, 'build response'],
+        ['api', 360, 'serialize']
+      ];
       clearLit();
       lines.forEach(function (l) { l.classList.remove('is-on'); });
       svc.classList.add('is-running');
+      setBackend(be);
 
       var t = 0;
-      STEPS.forEach(function (s) {
+      steps.forEach(function (s) {
         later(function () {
           clearLit();
           step(s[0]).classList.add('is-lit');
@@ -365,13 +385,14 @@
         }, t);
         t += s[1];
       });
-      later(function () { clearLit(); svcState.textContent = DONE; }, t);
-      lines.forEach(function (l, i) { later(function () { l.classList.add('is-on'); }, t + i * 90); });
-      later(run, t + lines.length * 90 + 3400);
+      later(function () { clearLit(); svcState.textContent = '200 OK · ' + be.ms + ' ms'; }, t);
+      lines.forEach(function (l, i) { later(function () { l.classList.add('is-on'); }, t + i * 70); });
+      later(run, t + lines.length * 70 + 3000);
     };
 
+    setBackend(BACKENDS[0]);
     if (reducedMotion.matches || !('IntersectionObserver' in window)) {
-      svcState.textContent = DONE;
+      svcState.textContent = '200 OK · ' + BACKENDS[0].ms + ' ms';
     } else {
       new IntersectionObserver(function (entries) {
         var vis = entries[0].isIntersecting;
@@ -387,6 +408,115 @@
           svcState.textContent = 'idle';
         }
       }, { threshold: 0.3 }).observe(svc);
+    }
+  }
+
+  /* ─── Thinking in Loops: Sudoku refined by one block ── */
+  // Illustrative run: the same block is applied each loop; cells it changes
+  // flash, rule conflicts are marked, and it halts once p(halt) > 0.999.
+
+  var sudoku = document.getElementById('sudoku');
+  if (sudoku) {
+    var SOL = [1, 2, 3, 4, 3, 4, 1, 2, 2, 1, 4, 3, 4, 3, 2, 1];
+    var GIVEN = [0, 3, 5, 10, 12, 15];
+    var LOOPS = [
+      { set: { 1: 2, 2: 3, 4: 3, 6: 1, 7: 2, 8: 2, 9: 3 }, p: 0.041 },
+      { set: { 9: 1, 11: 3, 13: 3, 14: 1 }, p: 0.62 },
+      { set: { 14: 2 }, p: 0.9993 }
+    ];
+    var THRESHOLD = 0.999;
+    var loopN = document.getElementById('loop-n');
+    var haltP = document.getElementById('halt-p');
+    var haltFill = document.getElementById('halt-fill');
+    var haltState = document.getElementById('halt-state');
+    var demo = document.getElementById('loops-demo');
+    var cells = [];
+    var grid = [];
+    var loopTimers = [];
+    var loopRunning = false;
+
+    for (var c = 0; c < 16; c++) {
+      var cell = document.createElement('span');
+      cell.className = 'sudoku__cell';
+      sudoku.appendChild(cell);
+      cells.push(cell);
+    }
+
+    var conflicts = function () {
+      var bad = {};
+      for (var i = 0; i < 16; i++) {
+        if (!grid[i]) continue;
+        for (var j = i + 1; j < 16; j++) {
+          if (grid[j] !== grid[i]) continue;
+          var sameRow = (i >> 2) === (j >> 2);
+          var sameCol = (i & 3) === (j & 3);
+          var sameBox = ((i >> 3) === (j >> 3)) && (((i & 3) >> 1) === ((j & 3) >> 1));
+          if (sameRow || sameCol || sameBox) { bad[i] = true; bad[j] = true; }
+        }
+      }
+      return bad;
+    };
+
+    var paint = function (changed) {
+      var bad = conflicts();
+      cells.forEach(function (el, i) {
+        el.textContent = grid[i] || '';
+        el.classList.toggle('is-given', GIVEN.indexOf(i) !== -1);
+        el.classList.toggle('is-changed', !!changed[i]);
+        el.classList.toggle('is-conflict', !!bad[i]);
+      });
+    };
+
+    var setHalt = function (n, p, state) {
+      loopN.textContent = n;
+      haltP.textContent = p.toFixed(p > 0.99 ? 4 : 3);
+      haltFill.style.transform = 'scaleX(' + p + ')';
+      haltState.textContent = state;
+      demo.classList.toggle('is-halted', state.indexOf('halt') === 0);
+    };
+
+    var reset = function () {
+      grid = SOL.map(function (v, i) { return GIVEN.indexOf(i) !== -1 ? v : 0; });
+      paint({});
+      setHalt(0, 0, 'thinking');
+    };
+
+    var runLoops = function () {
+      loopTimers = [];
+      reset();
+      var t = 900;
+      LOOPS.forEach(function (loop, k) {
+        loopTimers.push(setTimeout(function () {
+          for (var idx in loop.set) grid[idx] = loop.set[idx];
+          paint(loop.set);
+          var halted = loop.p > THRESHOLD;
+          setHalt(k + 1, loop.p, halted ? 'halt at loop ' + (k + 1) : 'p ≤ 0.999 · loop again');
+        }, t));
+        t += 1400;
+      });
+      loopTimers.push(setTimeout(runLoops, t + 2200));
+    };
+
+    var showFinal = function () {
+      grid = SOL.slice();
+      paint({});
+      setHalt(LOOPS.length, LOOPS[LOOPS.length - 1].p, 'halt at loop ' + LOOPS.length);
+    };
+
+    if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+      showFinal();
+    } else {
+      reset();
+      new IntersectionObserver(function (entries) {
+        var vis = entries[0].isIntersecting;
+        if (vis && !loopRunning) {
+          loopRunning = true;
+          runLoops();
+        } else if (!vis && loopRunning) {
+          loopRunning = false;
+          loopTimers.forEach(clearTimeout);
+        }
+      }, { threshold: 0.3 }).observe(demo);
     }
   }
 })();

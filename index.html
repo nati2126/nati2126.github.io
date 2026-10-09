@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nathnael Dejene — Software Engineer</title>
-  <meta name="description" content="Nathnael Dejene is a software engineer in Addis Ababa working on backend services and computer vision in Python and C++. Currently at the Ethiopian Artificial Intelligence Institute.">
+  <title>Nathnael Dejene — AI &amp; Computer Vision Engineer</title>
+  <meta name="description" content="Nathnael Dejene is an AI and computer vision engineer in Addis Ababa. He trains, evaluates, optimizes and deploys vision models, currently at the Ethiopian Artificial Intelligence Institute.">
   <meta name="author" content="Nathnael Dejene">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F3F1EC" media="(prefers-color-scheme: light)">
@@ -15,8 +15,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nati2126.github.io/">
   <meta property="og:image" content="https://nati2126.github.io/assets/nathnael.jpg">
-  <meta property="og:title" content="Nathnael Dejene — Software Engineer">
-  <meta property="og:description" content="Backend services and computer vision in Python and C++. Currently at the Ethiopian Artificial Intelligence Institute.">
+  <meta property="og:title" content="Nathnael Dejene — AI &amp; Computer Vision Engineer">
+  <meta property="og:description" content="Training, evaluating, optimizing and deploying computer vision models. Currently at the Ethiopian Artificial Intelligence Institute.">
 
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
@@ -94,12 +94,12 @@
     <!-- ─── Hero ─────────────────────────────────────────── -->
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero__text">
-        <p class="kicker mono">Software Engineer <span class="sep">/</span> Backend <span class="sep">·</span> Computer Vision</p>
+        <p class="kicker mono">AI &amp; Computer Vision Engineer <span class="sep">/</span> Train <span class="sep">·</span> Evaluate <span class="sep">·</span> Optimize <span class="sep">·</span> Deploy</p>
         <h1 id="hero-title" class="hero__title">Nathnael<br>Dejene</h1>
         <p class="hero__lede">
-          I write Python and C++ for backend services and computer vision systems,
-          and I care most about the parts that decide whether software survives
-          production: correctness, debugging and clear documentation.
+          I take vision models through their whole life, from training and evaluation
+          to making them fast enough to deploy, and I care most about whether they
+          still hold up under real-world constraints.
         </p>
         <div class="hero__actions">
           <a class="btn btn--solid" href="#projects">Selected work <span aria-hidden="true">↓</span></a>
@@ -136,8 +136,27 @@
         <div><dt class="mono">Based in</dt><dd>Addis Ababa, Ethiopia</dd></div>
         <div><dt class="mono">Now</dt><dd>Computer Vision Engineer, EAII</dd></div>
         <div><dt class="mono">Education</dt><dd>M.Sc. Computer Engineering, AASTU</dd></div>
-        <div><dt class="mono">Primary</dt><dd>Python · C++</dd></div>
+        <div><dt class="mono">Stack</dt><dd>PyTorch · TensorRT · FastAPI</dd></div>
       </dl>
+    </section>
+
+    <!-- ─── Results ──────────────────────────────────────── -->
+    <section class="results wrap" aria-label="Selected results">
+      <a class="result" href="#vim" data-reveal>
+        <span class="result__fig">6.7×</span>
+        <span class="result__text">faster object detection with TensorRT FP16 than PyTorch on CPU (13.8 ms vs 92.6 ms per image)</span>
+        <span class="result__src mono">Vision Inference Microservice ↓</span>
+      </a>
+      <a class="result" href="#beflearn" data-reveal>
+        <span class="result__fig">−69.3%</span>
+        <span class="result__text">federated-learning communication from one-shot nested pruning, within about 1 pp of unpruned accuracy</span>
+        <span class="result__src mono">M.Sc. thesis, BEFLearn ↓</span>
+      </a>
+      <a class="result" href="#loops" data-reveal>
+        <span class="result__fig">204K</span>
+        <span class="result__text">parameters in a looped transformer that matches an 8-layer, 1.6M-parameter model on 4×4 Sudoku</span>
+        <span class="result__src mono">Thinking in Loops ↓</span>
+      </a>
     </section>
 
     <!-- ─── 01 Profile ───────────────────────────────────── -->
@@ -150,21 +169,22 @@
       <div class="section__body profile">
         <div class="prose" data-reveal>
           <p class="lead">
-            I'm a software engineer at the Ethiopian Artificial Intelligence Institute,
-            where I build and optimize computer vision systems and the FastAPI services
-            that put them into use.
+            I'm an AI and computer vision engineer at the Ethiopian Artificial
+            Intelligence Institute, with an M.Sc. in Computer Engineering and a
+            software engineer's habits.
           </p>
           <p>
-            Most of the job is taking something that works in a research notebook and
-            making it fast, tested and documented well enough for a team to deploy and
-            maintain. That means reading model outputs closely, finding the cases where
-            they fail, and fixing the reason rather than the symptom.
+            My work covers the full model lifecycle: training, evaluation, optimization
+            and deployment. I build vision systems in Python and PyTorch, serve them
+            through FastAPI, and benchmark them across runtimes like ONNX Runtime,
+            OpenVINO and TensorRT until I know where the time and the accuracy go.
           </p>
           <p>
-            I trained as an electrical and computer engineer and recently finished an
-            M.Sc. in Computer Engineering. My grounding is in algorithms, data structures and
-            distributed systems, and I'm happiest on work where correctness matters and
-            the reasoning has to be explained clearly in writing.
+            I move between research and production. My thesis made federated learning
+            practical on slow links, and at EAII I take applied research through to
+            deployed code. The part I enjoy most is finding the reason a model fails,
+            such as an INT8 model scoring zero because two outputs shared one
+            quantization scale, and explaining it clearly in writing.
           </p>
         </div>
 
@@ -202,11 +222,11 @@
         <aside class="focus" data-reveal aria-label="Areas of focus">
           <p class="label mono">Areas of focus</p>
           <ol>
-            <li><span class="mono">a</span>Backend services &amp; REST APIs</li>
-            <li><span class="mono">b</span>Computer vision in production</li>
-            <li><span class="mono">c</span>Model evaluation &amp; debugging</li>
-            <li><span class="mono">d</span>Inference optimization</li>
-            <li><span class="mono">e</span>Network security</li>
+            <li><span class="mono">a</span>Computer vision &amp; detection</li>
+            <li><span class="mono">b</span>Model evaluation &amp; failure analysis</li>
+            <li><span class="mono">c</span>Inference optimization &amp; quantization</li>
+            <li><span class="mono">d</span>Federated learning &amp; pruning</li>
+            <li><span class="mono">e</span>Model serving with FastAPI</li>
           </ol>
         </aside>
       </div>
@@ -229,13 +249,30 @@
             <h3 class="role__title">Computer Vision Engineer</h3>
             <p class="role__org">Ethiopian Artificial Intelligence Institute (EAII) · Addis Ababa</p>
             <ul class="role__list">
-              <li>Develop and optimize high-performance computer vision systems in Python, shipping production code to real-world deployments.</li>
-              <li>Evaluate and debug model outputs for accuracy and correctness, isolating failure cases and improving reliability.</li>
-              <li>Build FastAPI backend services for large-scale data processing and model deployment.</li>
-              <li>Move research prototypes into production with cross-functional teams, documenting designs and technical decisions along the way.</li>
+              <li>Build and optimize computer vision systems in Python and PyTorch, and the FastAPI services that deploy them.</li>
+              <li>Evaluate model outputs to isolate failure cases and improve reliability before deployment.</li>
+              <li>Conduct applied computer vision research alongside engineering work, moving prototypes into production.</li>
             </ul>
             <ul class="tags" aria-label="Stack">
               <li>Python</li><li>PyTorch</li><li>FastAPI</li><li>Docker</li><li>Linux</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role" data-reveal>
+          <div class="role__when mono">
+            <span>2025</span>
+            <span>Remote</span>
+          </div>
+          <div class="role__main">
+            <h3 class="role__title">Behavioral Data &amp; Architecture-Strategy Annotation</h3>
+            <p class="role__org">Revelo</p>
+            <ul class="role__list">
+              <li>Rated how AI models approach and solve technical problems against detailed expert rubrics.</li>
+              <li>Wrote expert-level reasoning for machine learning tasks used to train and evaluate AI models.</li>
+            </ul>
+            <ul class="tags" aria-label="Areas">
+              <li>AI model evaluation</li><li>Training data</li><li>Technical writing</li>
             </ul>
           </div>
         </article>
@@ -248,10 +285,12 @@
             <h3 class="role__title">Engineering Intern</h3>
             <p class="role__org">Gibe III Hydroelectric Power Station</p>
             <ul class="role__list">
-              <li>Supported maintenance and optimization of control systems for power-generation equipment, with hands-on exposure to industrial automation and real-time monitoring.</li>
+              <li>Designed a microcontroller temperature controller in C++ for the generator excitation (SCR) cabinet. An RTD sensor switches the cooling fans through relays between high and low set points, even after shutdown.</li>
+              <li>Simulated it in Proteus and built it to run alongside the existing controller without modifying its proprietary software.</li>
+              <li>Worked hands-on with SCADA, PLC and excitation control systems for power-generation equipment.</li>
             </ul>
             <ul class="tags" aria-label="Areas">
-              <li>Control systems</li><li>Industrial automation</li><li>Real-time monitoring</li>
+              <li>C++</li><li>Microcontrollers</li><li>Proteus</li><li>SCADA</li><li>PLC</li>
             </ul>
           </div>
         </article>
@@ -267,64 +306,17 @@
 
       <div class="section__body">
 
-        <!-- MiniTor -->
-        <article class="project" data-reveal>
+        <!-- 03.1 Vision Inference Microservice -->
+        <article class="project" id="vim" data-reveal>
           <div class="project__head">
-            <p class="project__idx mono">03.1 — Networking / Security</p>
-            <h3 class="project__title">MiniTor</h3>
-            <p class="project__sub">A custom onion-routing protocol for anonymous communication, in Python.</p>
-          </div>
-
-          <div class="figure route-fig" aria-label="Diagram: a message wrapped in three encryption layers travels from client through entry, middle and exit relays; each relay removes one layer.">
-            <div class="figure__bar mono">
-              <span>fig. 1 — one message, three layers, three hops</span>
-              <span class="figure__state" id="route-state" aria-live="off">building circuit</span>
-            </div>
-            <div class="route" id="route">
-              <div class="route__dir mono">
-                <span class="node node--dir">Directory server</span>
-                <span class="route__dir-note">relays register · client discovers</span>
-              </div>
-              <ol class="route__path">
-                <li class="stop" data-stop="0"><span class="node">Client</span><span class="stop__note mono">wraps 3 layers</span></li>
-                <li class="stop" data-stop="1"><span class="node">Entry</span><span class="stop__note mono">peels layer 1</span></li>
-                <li class="stop" data-stop="2"><span class="node">Middle</span><span class="stop__note mono">peels layer 2</span></li>
-                <li class="stop" data-stop="3"><span class="node">Exit</span><span class="stop__note mono">peels layer 3</span></li>
-                <li class="stop" data-stop="4"><span class="node node--ghost">Destination</span><span class="stop__note mono">plaintext</span></li>
-              </ol>
-              <div class="packet" id="packet" aria-hidden="true">
-                <span class="layer layer--3"></span>
-                <span class="layer layer--2"></span>
-                <span class="layer layer--1"></span>
-                <span class="core"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="project__cols">
-            <ul class="project__list">
-              <li>Designed and implemented an onion-routing protocol that lets clients communicate anonymously across a network of relay nodes.</li>
-              <li>Built hybrid encryption: RSA for key exchange, AES for data transfer. Each relay can only remove its own layer and only knows the previous and next hop.</li>
-              <li>Wrote a decentralized directory server for relay registration and client discovery.</li>
-            </ul>
-            <div class="project__meta">
-              <ul class="tags"><li>Python</li><li>RSA</li><li>AES</li><li>TCP sockets</li><li>Docker</li></ul>
-              <a class="link mono" href="https://github.com/nati2126/MiniTor" target="_blank" rel="noopener">Source on GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Vision Inference Microservice -->
-        <article class="project" data-reveal>
-          <div class="project__head">
-            <p class="project__idx mono">03.2 — Backend / Machine Learning</p>
+            <p class="project__idx mono">03.1 — Inference / Deployment</p>
             <h3 class="project__title">Vision Inference Microservice</h3>
-            <p class="project__sub">An object-detection API: upload an image, get back labelled bounding boxes.</p>
+            <p class="project__sub">One YOLOv8 detection API, four inference backends, and a reproducible benchmark of accuracy, latency and memory across them.</p>
           </div>
 
-          <div class="figure svc-fig" aria-label="Diagram: a POST request to /api/v1/detect passes down through the endpoint, service and model layers, then returns JSON detections.">
+          <div class="figure svc-fig" aria-label="Diagram: a POST request to /api/v1/detect passes down through the endpoint, service and model layers, runs on one of four backends, and returns JSON detections.">
             <div class="figure__bar mono">
-              <span>fig. 2 — one request through the service</span>
+              <span>fig. 1 — one request through the service</span>
               <span class="figure__state" id="svc-state">idle</span>
             </div>
             <div class="svc" id="svc">
@@ -332,11 +324,11 @@
                 <p class="svc__label mono">request</p>
                 <div class="svc__req mono" data-step="req">
                   <span><b>POST</b> /api/v1/detect</span>
-                  <span class="svc__dim">multipart · image/jpeg</span>
+                  <span class="svc__dim">multipart · file=image.jpg</span>
                 </div>
                 <div class="svc__req svc__req--health mono">
                   <span><b>GET</b> /api/v1/health</span>
-                  <span class="svc__dim">model loaded · version</span>
+                  <span class="svc__dim">backend · precision · device</span>
                 </div>
               </div>
 
@@ -345,7 +337,11 @@
                 <ol class="svc__layers">
                   <li data-step="api"><code class="mono">api/v1/endpoints</code><span>thin routes · Pydantic v2</span></li>
                   <li data-step="service"><code class="mono">services</code><span>orchestration</span></li>
-                  <li data-step="model"><code class="mono">models</code><span>YOLOv8 · cpu / cuda / mps</span></li>
+                  <li data-step="model"><code class="mono">models</code>
+                    <span class="svc__backends mono" aria-label="Backends">
+                      <i data-b="pytorch">pytorch</i><i data-b="onnxruntime">onnxruntime</i><i data-b="openvino">openvino</i><i data-b="tensorrt">tensorrt</i>
+                    </span>
+                  </li>
                   <li data-step="core" class="svc__core"><code class="mono">core</code><span>config · structlog JSON logs</span></li>
                 </ol>
               </div>
@@ -359,23 +355,253 @@
 <span class="ln">    "confidence": <em>0.91</em>,</span>
 <span class="ln">    "bbox": [<em>178, 132, 428, 458</em>]</span>
 <span class="ln">  }],</span>
-<span class="ln">  "inference_time_ms": <em>42.15</em></span>
+<span class="ln">  "metadata": {</span>
+<span class="ln">    "backend": <em id="res-backend">"tensorrt"</em>,</span>
+<span class="ln">    "precision": <em id="res-precision">"fp16"</em>,</span>
+<span class="ln">    "inference_ms": <em id="res-ms">13.84</em></span>
+<span class="ln">  }</span>
 <span class="ln">}</span></pre>
               </div>
             </div>
-            <p class="figure__note mono">Response shape is illustrative. 42.15 ms is the sample timing from the project README.</p>
+            <p class="figure__note mono">Each pass uses the next backend; time in the model layer scales with its benchmarked latency. Response shape is illustrative.</p>
+          </div>
+
+          <div class="figure chart-fig">
+            <div class="figure__bar mono">
+              <span>fig. 2 — benchmark, yolov8n · 640 · batch 1 · coco128</span>
+              <span>i9-14900HX · RTX 4070 Laptop</span>
+            </div>
+            <div class="chart-pair">
+              <div class="chart" data-chart="bars" data-label-cols="3" data-value="3" data-max="100" data-unit=" ms" data-highlight="0"
+                   data-title="Mean latency per image" data-sub="lower is better · TensorRT FP16 is 6.7× faster than PyTorch on CPU">
+                <table class="chart__table">
+                  <caption>Mean latency per image by backend</caption>
+                  <thead><tr><th>Backend</th><th>Device</th><th>Precision</th><th>Mean latency (ms)</th><th>Throughput (img/s)</th><th>mAP50-95</th><th>Size (MB)</th></tr></thead>
+                  <tbody>
+                    <tr><td>TensorRT</td><td>CUDA</td><td>FP16</td><td>13.84</td><td>72.2</td><td>0.444</td><td>9.4</td></tr>
+                    <tr><td>ONNX Runtime</td><td>CUDA</td><td>FP32</td><td>18.99</td><td>52.7</td><td>0.443</td><td>12.8</td></tr>
+                    <tr><td>PyTorch</td><td>CUDA</td><td>FP32</td><td>22.77</td><td>43.9</td><td>0.448</td><td>6.5</td></tr>
+                    <tr><td>OpenVINO</td><td>CPU</td><td>INT8</td><td>32.17</td><td>31.1</td><td>0.430</td><td>4.4</td></tr>
+                    <tr><td>ONNX Runtime</td><td>CPU</td><td>FP32</td><td>40.44</td><td>24.7</td><td>0.444</td><td>12.8</td></tr>
+                    <tr><td>OpenVINO</td><td>CPU</td><td>FP32</td><td>45.33</td><td>22.1</td><td>0.444</td><td>12.9</td></tr>
+                    <tr><td>ONNX Runtime</td><td>CPU</td><td>INT8</td><td>51.36</td><td>19.5</td><td>0.430</td><td>3.7</td></tr>
+                    <tr><td>PyTorch</td><td>CPU</td><td>FP32</td><td>92.61</td><td>10.8</td><td>0.448</td><td>6.5</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="chart" data-chart="bars" data-value="1" data-max="0.5" data-highlight="2"
+                   data-title="Finding the INT8 bug" data-sub="mAP50-95, ONNX Runtime on CPU">
+                <table class="chart__table">
+                  <caption>Accuracy of INT8 variants against FP32</caption>
+                  <thead><tr><th>Variant</th><th>mAP50-95</th><th>Size (MB)</th></tr></thead>
+                  <tbody>
+                    <tr><td>FP32 baseline</td><td>0.444</td><td>12.8</td></tr>
+                    <tr data-note="every score rounds to 0"><td>INT8, whole graph</td><td>0.000</td><td>3.6</td></tr>
+                    <tr><td>INT8, FP32 decode tail</td><td>0.430</td><td>3.7</td></tr>
+                  </tbody>
+                </table>
+                <p class="chart__story">
+                  YOLOv8's last Concat joins box coordinates (0–640 px) with class scores (0–1).
+                  One UInt8 scale for both rounds every score to zero. Keeping the 24 decode
+                  nodes in FP32 restores accuracy, and 63 of 64 convolutions stay INT8 at
+                  <strong>3.5× smaller</strong>.
+                </p>
+              </div>
+            </div>
+            <p class="figure__note mono">Single-laptop results on a 128-image set; differences around 0.01 mAP aren't meaningful. Hover a bar for details.</p>
           </div>
 
           <div class="project__cols">
             <ul class="project__list">
-              <li>Serves YOLOv8 object detection over a versioned FastAPI REST API: <code>POST /api/v1/detect</code> returns labels, confidence scores, bounding boxes and inference timing, and <code>GET /api/v1/health</code> reports model status.</li>
-              <li>Layered architecture with thin route handlers, a service layer for orchestration, an isolated model layer and shared core config, so the model can change without touching the API.</li>
-              <li>Pydantic v2 validation, structured JSON logging with structlog, and environment-based config for model, confidence threshold and compute device (CPU, CUDA or Apple MPS).</li>
-              <li>Multi-stage Docker build, docker-compose and Makefile targets, an async test suite with pytest and httpx, and auto-generated Swagger and ReDoc docs.</li>
+              <li>Built a YOLOv8 detection API that serves one endpoint from PyTorch, ONNX Runtime, OpenVINO or TensorRT, chosen by configuration, with a reproducible accuracy, latency and memory benchmark across backends.</li>
+              <li>TensorRT FP16 reached 13.8 ms per image (72 img/s), 6.7× faster than PyTorch on CPU with no accuracy loss.</li>
+              <li>Traced a naive INT8 model scoring 0 mAP to box coordinates and class scores sharing one quantization scale. Keeping the decode tail in FP32 recovered 0.430 mAP50-95 (FP32: 0.444) at 3.5× smaller size.</li>
+              <li>Layered FastAPI app with Pydantic v2 and structured logging; ruff, strict mypy and pytest run in GitHub Actions CI.</li>
             </ul>
             <div class="project__meta">
-              <ul class="tags"><li>Python</li><li>FastAPI</li><li>YOLOv8</li><li>PyTorch</li><li>Pydantic</li><li>Docker</li><li>pytest</li></ul>
+              <ul class="tags"><li>FastAPI</li><li>YOLOv8</li><li>TensorRT</li><li>OpenVINO</li><li>ONNX Runtime</li><li>Docker</li></ul>
               <a class="link mono" href="https://github.com/nati2126/vision-inference-microservice" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03.2 BEFLearn -->
+        <article class="project" id="beflearn" data-reveal>
+          <div class="project__head">
+            <p class="project__idx mono">03.2 — M.Sc. thesis / Federated learning</p>
+            <h3 class="project__title">BEFLearn</h3>
+            <p class="project__sub">One-shot nested pruning that sizes each federated client's model to its bandwidth.</p>
+          </div>
+
+          <div class="figure tiers-fig">
+            <div class="figure__bar mono">
+              <span>fig. 3 — nested sub-models, pruned once on the server</span>
+              <span>CIFAR-10 · VGG-11-BN · 10 clients · 20 rounds</span>
+            </div>
+            <div class="tiers" id="tiers">
+              <div class="tiers__plot" aria-hidden="true">
+                <svg viewBox="0 0 240 240" class="tiers__svg">
+                  <rect class="t-high" x="0.5" y="0.5" width="239" height="239" />
+                  <rect class="t-mid" x="0.5" y="120.5" width="119.5" height="119" />
+                  <rect class="t-low" x="0.5" y="180.5" width="59.5" height="59" />
+                </svg>
+                <span class="tiers__axis mono">side = width κ · area ≈ share of parameters</span>
+              </div>
+              <ol class="tiers__legend">
+                <li class="is-high">
+                  <span class="tiers__name">High <b class="mono">κ 1.00</b></span>
+                  <span class="mono">9.63M params · 36.72 MB · 2 clients on 10 Mbps</span>
+                </li>
+                <li class="is-mid">
+                  <span class="tiers__name">Mid <b class="mono">κ 0.50</b></span>
+                  <span class="mono">2.41M params · 9.19 MB · 3 clients on 2 Mbps</span>
+                </li>
+                <li class="is-low">
+                  <span class="tiers__name">Low <b class="mono">κ 0.25</b></span>
+                  <span class="mono">0.60M params · 2.31 MB · 5 clients on 0.1 Mbps</span>
+                </li>
+                <li class="tiers__note mono">Low ⊆ Mid ⊆ High. The server averages each weight over the clients that trained it.</li>
+              </ol>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <span class="stat__fig">−69.3%</span>
+                <span class="stat__label">total communication</span>
+                <span class="stat__ctx mono">367.0 → 112.5 MB per round</span>
+              </div>
+              <div class="stat">
+                <span class="stat__fig">48.9 → 3.1 min</span>
+                <span class="stat__label">round-gating upload</span>
+                <span class="stat__ctx mono">slowest client, per round</span>
+              </div>
+              <div class="stat">
+                <span class="stat__fig">−0.93 pp</span>
+                <span class="stat__label">accuracy vs unpruned FedAvg</span>
+                <span class="stat__ctx mono">67.47% vs 68.41%, inside the ≈1 pp run-to-run noise</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project__cols">
+            <ul class="project__list">
+              <li>Designed server-side, one-shot nested pruning that sizes each client's model to its bandwidth. Constrained clients do no pruning work during training.</li>
+              <li>Cut total communication by 69.3% and the slowest client's upload from 48.9 to 3.1 min, within 1 pp of unpruned accuracy.</li>
+              <li>Nested sandwich training raised the two smallest sub-models' standalone accuracy from 15% and 30% to 61% and 62% at no extra communication cost.</li>
+              <li>Results are reported as mean ± std over three seeds, with the simulator's own repeatability floor measured and stated.</li>
+            </ul>
+            <div class="project__meta">
+              <ul class="tags"><li>PyTorch</li><li>Flower</li><li>Federated learning</li><li>Pruning</li></ul>
+              <a class="link mono" href="https://github.com/nati2126/beflearn" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03.3 Thinking in Loops -->
+        <article class="project" id="loops" data-reveal>
+          <div class="project__head">
+            <p class="project__idx mono">03.3 — Research / Transformers</p>
+            <h3 class="project__title">Thinking in Loops</h3>
+            <p class="project__sub">A Universal Transformer that solves 4×4 Sudoku by reapplying one shared block, and learns when to stop.</p>
+          </div>
+
+          <div class="figure loops-fig">
+            <div class="figure__bar mono">
+              <span>fig. 4 — one block, applied until the halting head is sure</span>
+              <span>204K params</span>
+            </div>
+            <div class="loops">
+              <div class="loops__demo" id="loops-demo" aria-label="Illustration: the same block refines a 4 by 4 Sudoku grid over three loops, then halts when its halting probability passes 0.999.">
+                <div class="sudoku" id="sudoku" aria-hidden="true"></div>
+                <div class="loops__side mono" aria-hidden="true">
+                  <div class="loops__block">
+                    <span>shared block</span>
+                    <span class="loops__arrow">↻</span>
+                    <span class="loops__count">loop <b id="loop-n">0</b></span>
+                  </div>
+                  <div class="halt">
+                    <span class="halt__label">p(halt) <b id="halt-p">0.000</b></span>
+                    <span class="halt__track"><span class="halt__fill" id="halt-fill"></span><span class="halt__tick" title="threshold 0.999"></span></span>
+                    <span class="halt__state" id="halt-state">thinking</span>
+                  </div>
+                </div>
+                <p class="loops__note mono">Illustrative run</p>
+              </div>
+
+              <div class="chart" data-chart="sweep" data-title="Halting threshold vs compute" data-sub="puzzle accuracy (%) against average loops used, 2,000 test puzzles">
+                <table class="chart__table">
+                  <caption>Halting threshold sweep</caption>
+                  <thead><tr><th>Threshold</th><th>Avg loops</th><th>Puzzle accuracy (%)</th></tr></thead>
+                  <tbody>
+                    <tr><td>p &gt; 0.5</td><td>1.14</td><td>90.67</td></tr>
+                    <tr><td>p &gt; 0.7</td><td>1.24</td><td>95.15</td></tr>
+                    <tr><td>p &gt; 0.9</td><td>1.44</td><td>98.97</td></tr>
+                    <tr><td>p &gt; 0.95</td><td>1.58</td><td>99.52</td></tr>
+                    <tr><td>p &gt; 0.99</td><td>1.95</td><td>99.80</td></tr>
+                    <tr><td>p &gt; 0.999</td><td>2.71</td><td>99.93</td></tr>
+                    <tr data-ref><td>Fixed 8 loops</td><td>8</td><td>99.93</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="project__cols">
+            <ul class="project__list">
+              <li>Built a transformer that solves 4×4 Sudoku by reapplying one shared block and learning when to stop. With 204K parameters it matches an 8-layer, 1.6M-parameter model (99.93% vs 99.95% solved, 3 seeds).</li>
+              <li>Showed the halting head is well calibrated: a tuned stopping threshold keeps full accuracy at about a third of the compute (2.71 loops instead of 8).</li>
+              <li>Includes a Gradio demo that runs the model with a chosen loop budget, from 1 to 32 loops.</li>
+            </ul>
+            <div class="project__meta">
+              <ul class="tags"><li>PyTorch</li><li>Transformers</li><li>Adaptive compute</li><li>Gradio</li></ul>
+              <a class="link mono" href="https://github.com/nati2126/thinking-in-loops" target="_blank" rel="noopener">Source on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03.4 MiniTor -->
+        <article class="project" id="minitor" data-reveal>
+          <div class="project__head">
+            <p class="project__idx mono">03.4 — Networking / Security</p>
+            <h3 class="project__title">MiniTor</h3>
+            <p class="project__sub">A Tor-style onion routing network in Python, with authenticated encryption at every hop.</p>
+          </div>
+
+          <div class="figure route-fig" aria-label="Diagram: a message wrapped in three encryption layers travels from client through entry, middle and exit relays; each relay removes one layer.">
+            <div class="figure__bar mono">
+              <span>fig. 5 — one message, three layers, three hops</span>
+              <span class="figure__state" id="route-state" aria-live="off">building circuit</span>
+            </div>
+            <div class="route" id="route">
+              <div class="route__dir mono">
+                <span class="node node--dir">Directory server</span>
+                <span class="route__dir-note">relays register · client discovers</span>
+              </div>
+              <ol class="route__path">
+                <li class="stop" data-stop="0"><span class="node">Client</span><span class="stop__note mono">wraps 3 AES-GCM layers</span></li>
+                <li class="stop" data-stop="1"><span class="node">Entry</span><span class="stop__note mono">peels layer 1</span></li>
+                <li class="stop" data-stop="2"><span class="node">Middle</span><span class="stop__note mono">peels layer 2</span></li>
+                <li class="stop" data-stop="3"><span class="node">Exit</span><span class="stop__note mono">peels layer 3 · exit policy</span></li>
+                <li class="stop" data-stop="4"><span class="node node--ghost">Destination</span><span class="stop__note mono">plaintext</span></li>
+              </ol>
+              <div class="packet" id="packet" aria-hidden="true">
+                <span class="layer layer--3"></span>
+                <span class="layer layer--2"></span>
+                <span class="layer layer--1"></span>
+                <span class="core"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project__cols">
+            <ul class="project__list">
+              <li>Built a Tor-style network with RSA-OAEP key exchange and AES-GCM authenticated layers, so each relay can remove only its own layer and knows only the previous and next hop.</li>
+              <li>Fixed-size cells, replay protection and exit policies, plus a directory server for relay registration and discovery.</li>
+              <li>End-to-end tests run in CI on Linux, Windows and macOS.</li>
+            </ul>
+            <div class="project__meta">
+              <ul class="tags"><li>Python</li><li>Cryptography</li><li>RSA-OAEP</li><li>AES-GCM</li><li>TCP</li></ul>
+              <a class="link mono" href="https://github.com/nati2126/MiniTor" target="_blank" rel="noopener">Source on GitHub ↗</a>
             </div>
           </div>
         </article>
@@ -393,28 +619,20 @@
       <div class="section__body">
         <dl class="spec" data-reveal>
           <div class="spec__row spec__row--primary">
-            <dt class="mono">Primary languages</dt>
-            <dd>Python, C++</dd>
+            <dt class="mono">Languages</dt>
+            <dd>Python, C++ <span class="spec__more">· SQL, JavaScript, Java, Node.js, Rust</span></dd>
           </div>
           <div class="spec__row">
-            <dt class="mono">Also write</dt>
-            <dd>JavaScript, Java, SQL, MATLAB</dd>
+            <dt class="mono">ML &amp; computer vision</dt>
+            <dd>PyTorch, TensorFlow, YOLOv8, model evaluation, quantization &amp; pruning, federated learning</dd>
           </div>
           <div class="spec__row">
-            <dt class="mono">Machine learning</dt>
-            <dd>PyTorch, TensorFlow, deep learning, computer vision, model evaluation, quantization &amp; pruning</dd>
-          </div>
-          <div class="spec__row">
-            <dt class="mono">Backend &amp; tools</dt>
-            <dd>FastAPI, Flask, REST APIs, Docker, Git, Linux</dd>
+            <dt class="mono">Inference &amp; deployment</dt>
+            <dd>ONNX Runtime, OpenVINO, TensorRT, FastAPI, Flask, REST APIs, Docker</dd>
           </div>
           <div class="spec__row">
             <dt class="mono">Engineering practice</dt>
-            <dd>Code review, debugging, algorithm analysis, data structures, technical writing &amp; documentation</dd>
-          </div>
-          <div class="spec__row">
-            <dt class="mono">Domains</dt>
-            <dd>Backend development, computer vision, AI model evaluation &amp; training data, network security</dd>
+            <dd>pytest, GitHub Actions CI, mypy, Git, Linux, benchmarking, code review, technical writing</dd>
           </div>
         </dl>
       </div>
@@ -433,6 +651,7 @@
             <p class="degree__years mono">2024 — 2026</p>
             <h3 class="degree__title">M.Sc. Computer Engineering</h3>
             <p class="degree__school">Addis Ababa Science and Technology University</p>
+            <p class="degree__thesis">Thesis: <a class="link" href="#beflearn">One-Shot Nested Pruning for Resource-Constrained Federated Learning</a></p>
             <p class="degree__status mono">Completed Aug 2026</p>
           </article>
           <article class="degree" data-reveal>
@@ -458,8 +677,8 @@
 
       <div class="section__body">
         <p class="contact__intro" data-reveal>
-          Hiring for a software role, or working on something where this background fits?
-          Email is the fastest way to reach me.
+          Hiring for computer vision or ML engineering, or working on a model that has
+          to be fast and reliable in production? Email is the fastest way to reach me.
         </p>
         <div class="contact__mail" data-reveal>
           <a class="mail" href="mailto:natidejene54@gmail.com">natidejene54@gmail.com</a>
@@ -480,7 +699,10 @@
     <a href="#top">Back to top ↑</a>
   </footer>
 
+  <div class="tip mono" id="tip" role="tooltip" hidden></div>
+
   <script src="js/main.js" defer></script>
+  <script src="js/charts.js" defer></script>
   <script type="module" src="js/scene.js"></script>
 </body>
 </html>

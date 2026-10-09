@@ -1198,33 +1198,6 @@ code {
    Results band, charts and project figures
    ========================================================================== */
 
-/* Results band under the hero */
-
-.results {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(56px, 8vw, 96px);
-}
-.result {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 18px 24px 4px 0;
-  border-top: 1px solid var(--ink);
-}
-.result + .result { padding-left: 24px; border-left: 1px solid var(--rule); }
-.result__fig {
-  font-size: clamp(44px, 5.4vw, 72px);
-  font-weight: 600;
-  letter-spacing: -.045em;
-  line-height: .95;
-  transition: color .2s;
-}
-.result__text { color: var(--ink-2); font-size: 15px; line-height: 1.45; max-width: 36ch; }
-.result__src { margin-top: auto; padding-top: 6px; color: var(--ink-3); transition: color .2s; }
-.result:hover .result__fig { color: var(--accent); }
-.result:hover .result__src { color: var(--accent-ink); }
-
 /* Chart shell */
 
 .chart { padding: 18px 20px 16px; min-width: 0; }
@@ -1505,9 +1478,6 @@ code {
 .spec__more { font-size: .58em; font-weight: 400; letter-spacing: 0; color: var(--ink-3); }
 
 @media (max-width: 900px) {
-  .results { grid-template-columns: minmax(0, 1fr); }
-  .result { padding: 18px 0 20px; }
-  .result + .result { padding-left: 0; border-left: 0; border-top-color: var(--rule); }
 
   .chart-pair, .loops { grid-template-columns: minmax(0, 1fr); }
   .chart-pair > .chart + .chart,

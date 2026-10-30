@@ -15,28 +15,13 @@
     return darkQuery.matches ? 'dark' : 'light';
   }
 
-  function announceTheme() {
-    document.dispatchEvent(new CustomEvent('themechange', { detail: currentTheme() }));
-  }
-
   var themeBtn = document.querySelector('.theme-toggle');
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
       var next = currentTheme() === 'dark' ? 'light' : 'dark';
       doc.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
-      announceTheme();
     });
-  }
-  darkQuery.addEventListener('change', announceTheme);
-
-  /* ─── 3D fallback ───────────────────────────────────── */
-  // If the WebGL module never loads (offline CDN, old browser), show a quiet fallback.
-  var stage = document.querySelector('.stage');
-  if (stage) {
-    setTimeout(function () {
-      if (!stage.classList.contains('is-ready')) stage.classList.add('no-webgl');
-    }, 6000);
   }
 
   /* ─── Addis Ababa clock ─────────────────────────────── */

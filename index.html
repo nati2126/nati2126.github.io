@@ -38,14 +38,6 @@
     })();
   </script>
 
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-      }
-    }
-  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -93,9 +85,12 @@
 
     <!-- ─── Hero ─────────────────────────────────────────── -->
     <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero__text">
+      <div class="hero__head">
         <p class="kicker mono">AI &amp; Computer Vision Engineer <span class="sep">/</span> Train <span class="sep">·</span> Evaluate <span class="sep">·</span> Optimize <span class="sep">·</span> Deploy</p>
         <h1 id="hero-title" class="hero__title">Nathnael<br>Dejene</h1>
+      </div>
+
+      <div class="hero__intro">
         <p class="hero__lede">
           AI and computer vision engineer with an M.Sc. in Computer Engineering and a
           strong software engineering foundation. Experienced across the full model
@@ -109,31 +104,6 @@
           <a class="btn" href="assets/Nathnael_Dejene_CV.pdf" download>Download CV <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-
-      <figure class="stage" aria-label="Interactive 3D point cloud with a live object-detection overlay">
-        <canvas id="scene" aria-hidden="true"></canvas>
-
-        <div class="stage__hud" aria-hidden="true">
-          <div class="det" id="det">
-            <span class="det__label mono"><span id="det-class">—</span> <b id="det-score">0.00</b></span>
-          </div>
-          <div class="hud hud--tl mono">
-            <span>CAM_01</span>
-            <span>pointcloud / surface-sampled</span>
-          </div>
-          <div class="hud hud--tr mono"><span id="hud-id">obj 01/04</span></div>
-          <div class="hud hud--bl mono">
-            <span><span id="hud-fps">--</span> fps</span>
-            <span><span id="hud-pts">0</span> pts</span>
-            <span>frame <span id="hud-frame">0</span></span>
-          </div>
-          <div class="hud hud--br mono">drag to rotate · click to switch</div>
-          <span class="tick tick--t"></span><span class="tick tick--r"></span>
-          <span class="tick tick--b"></span><span class="tick tick--l"></span>
-        </div>
-
-        <figcaption class="stage__fallback mono">3D preview unavailable in this browser.</figcaption>
-      </figure>
 
       <dl class="hero__facts">
         <div><dt class="mono">Based in</dt><dd>Addis Ababa, Ethiopia</dd></div>
@@ -676,6 +646,5 @@
 
   <script src="js/main.js" defer></script>
   <script src="js/charts.js" defer></script>
-  <script type="module" src="js/scene.js"></script>
 </body>
 </html>

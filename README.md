@@ -1,4 +1,4 @@
-# nathnael-dejene / portfolio
+# nati2126.github.io
 
 Personal site. Static HTML, CSS and JavaScript with no build step. The hero is a
 WebGL point cloud (Three.js, loaded from jsDelivr) with a live detection overlay.
